@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "carousel-hammerjs-demo"
+    }
+  },
+  "defaultProject": "carousel-hammerjs-demo",
+  "cli": {
+    "analytics": "111de013-b236-4e6a-b8a9-33cce1ed106d"
+  }
 }
