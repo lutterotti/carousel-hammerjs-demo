@@ -38,11 +38,14 @@ export class CarouselComponent implements AfterViewInit, OnChanges {
   @Input() cards: any[];
   @ViewChild('carouselContainer', { static: true }) carousel_container: ElementRef;
   public carousel_index = 0;
+  public swipe_direction = 0;
+  public swipe_start_position = 0;
   private hammer_container: HammerManager;
 
   constructor(private ChangeDetectorRef: ChangeDetectorRef) {}
   // i believe we can simulate the swipe functionality with panleft and panright through detecting the pressure attribute in the pointerevent
-  // from there we can determine if the swipe was left or right based off if the x1 - x2 co-ordinates are negative (left) positive (right)
+  // dont even need this ^ there is pancancel and panstart
+  // from there we can determine if the swipe was left or right based off if the x1 - x2 co-ordinates are negative (right) positive (left)
 
   ngAfterViewInit() {
     this.hammer_container = new Hammer.Manager(this.carousel_container.nativeElement);
@@ -51,15 +54,41 @@ export class CarouselComponent implements AfterViewInit, OnChanges {
 
     this.hammer_container.on('panleft', (e: HammerInput) => {
       const source_event = e.srcEvent as PointerEvent;
-      console.log('panleft', source_event);
+      this.swipe_direction = this.swipe_start_position - source_event.pageX;
     });
+
     this.hammer_container.on('panright', (e: HammerInput) => {
       const source_event = e.srcEvent as PointerEvent;
-      console.log('panright', source_event);
+      this.swipe_direction = this.swipe_start_position - source_event.pageX;
+    });
+
+    this.hammer_container.on('panstart', (e: HammerInput) => {
+      const source_event = e.srcEvent as PointerEvent;
+      this.swipe_start_position = source_event.pageX;
+    });
+
+    this.hammer_container.on('pancancel', (e: HammerInput) => {
+      const source_event = e.srcEvent as PointerEvent;
+    });
+
+    this.hammer_container.on('panend', (e: HammerInput) => {
+      const source_event = e.srcEvent as PointerEvent;
+      this.updateCarouselIndex();
     });
 
     this.ChangeDetectorRef.detectChanges();
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    this.updateCarouselIndex();
+  }
+
+  updateCarouselIndex() {
+    const number_of_cards = this.cards.length - 1;
+    if ((this.swipe_direction > 0) && (this.carousel_index < number_of_cards)) {
+      this.carousel_index = this.carousel_index + 1;
+    } else if (this.swipe_direction < 0 && (this.carousel_index > 0)) {
+      this.carousel_index = this.carousel_index - 1;
+    }
+  }
 }
