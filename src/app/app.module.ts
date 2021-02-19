@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { TestComponent } from './test.component';
+import { TestPaginationComponent } from './test-pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarouselComponent
+    CarouselComponent,
+    TestComponent,
+    TestPaginationComponent
   ],
   imports: [
     BrowserModule,

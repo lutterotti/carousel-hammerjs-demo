@@ -3,12 +3,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <carousel [cards]="cards" style="height: 100%; width: 100%;"></carousel>
+    <carousel style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center;" [carouselContent]="carouselContent" [carouselPagination]="carouselPagination" [cards]="menu_content" [pagination]="menu_content">
+      <ng-template #carouselContent let-card="card" let-cardIndex="index"><test [content]="card"></test></ng-template>
+      <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index"><test-pagination [content]="paginate"></test-pagination></ng-template>
+    </carousel>
   `
 })
 export class AppComponent {
   title = 'carousel-hammerjs-demo';
-  public cards = [{
+  public menu_content = [{
     title: 'Watching', description: `I heard that you've found someone Always knew you'd find someone Got the message, knew what it said I can't forget`
   }, {
     title: 'You',
