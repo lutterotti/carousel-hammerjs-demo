@@ -1,12 +1,13 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, ChangeDetectorRef } from '@angular/core';
 import * as Hammer from 'hammerjs';
+import { CarouselContent } from '../app.component';
 
 @Component({
   selector: 'carousel',
   template: `
     <div class="carousel-container__wrapper" #carouselContainer>
       <div class="carousel-content__wrapper">
-        <ng-container *ngFor="let card of cards; index as index;">
+        <ng-container *ngFor="let card of cards; index as index; trackBy:trackByIndex;">
           <div *ngIf="index === carousel_index">
             <ng-template [ngTemplateOutlet]="carouselContent" [ngTemplateOutletContext]="{card: card, cardIndex: index}"></ng-template>
           </div>
@@ -24,10 +25,10 @@ import * as Hammer from 'hammerjs';
 })
 export class CarouselComponent implements AfterViewInit, OnChanges {
   @ViewChild('carouselContainer', { static: false }) carousel_container: ElementRef;
-  @Input() carouselContent: any;
-  @Input() carouselPagination: any;
-  @Input() cards: any[];
-  @Input() pagination: any[];
+  @Input() carouselContent: CarouselContent;
+  @Input() carouselPagination: CarouselContent;
+  @Input() cards: CarouselContent[];
+  @Input() pagination: CarouselContent[];
   public carousel_index = 0;
   public swipe_direction = 0;
   public swipe_start_position = 0;
@@ -77,5 +78,9 @@ export class CarouselComponent implements AfterViewInit, OnChanges {
 
   updateCarouselIndexWithPagination(index: number) {
     this.carousel_index = index;
+  }
+
+  trackByIndex(index: number) {
+    return index;
   }
 }

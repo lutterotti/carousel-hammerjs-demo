@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselContentComponent } from './carousel-content.component';
 import { CarouselContentPaginationComponent } from './carousel-content-pagination.component';
+import { SecondCarouselPaginationComponent } from './second-carousel-pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarouselComponent,
     CarouselContentComponent,
-    CarouselContentPaginationComponent
+    CarouselContentPaginationComponent,
+    SecondCarouselPaginationComponent
   ],
   imports: [
     BrowserModule,
