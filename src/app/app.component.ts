@@ -1,26 +1,55 @@
 import { Component } from '@angular/core';
 
+export interface CarouselContent {
+  title: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-root',
   template: `
-    <carousel style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center;" [carouselContent]="carouselContent" [carouselPagination]="carouselPagination" [cards]="menu_content" [pagination]="menu_content">
-      <ng-template #carouselContent let-card="card" let-cardIndex="index"><test [content]="card"></test></ng-template>
-      <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index"><test-pagination [content]="paginate"></test-pagination></ng-template>
-    </carousel>
+    <div style="display: flex; height: 100%; width: 100%; justify-content: space-between; align-items: center; flex-direction: row;">
+      <carousel class="carousel" [carouselContent]="carouselContent" [carouselPagination]="carouselPagination" [cards]="first_carousel_content" [pagination]="first_carousel_content">
+        <ng-template #carouselContent let-card="card" let-cardIndex="index"><carousel-content [content]="card"></carousel-content></ng-template>
+        <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index"><carousel-content-pagination [content]="paginate"></carousel-content-pagination></ng-template>
+      </carousel>
+      <carousel class="carousel" [carouselContent]="carouselContent" [carouselPagination]="carouselPagination" [cards]="second_carousel_content" [pagination]="second_carousel_content">
+        <ng-template #carouselContent let-card="card" let-cardIndex="index"><carousel-content [content]="card"></carousel-content></ng-template>
+        <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index"><carousel-content-pagination [content]="paginate"></carousel-content-pagination></ng-template>
+      </carousel>
+    </div>
   `
 })
 export class AppComponent {
   title = 'carousel-hammerjs-demo';
-  public menu_content = [{
-    title: 'Watching', description: `I heard that you've found someone Always knew you'd find someone Got the message, knew what it said I can't forget`
+  public first_carousel_content: CarouselContent[] = [{
+    title: 'Slide One', description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultricies luctus lectus, in tincidunt justo sollicitudin a. Suspendisse placerat`
+  }, {
+    title: 'Slide One Point Five',
+    description: `enim eu risus ultrices cursus. Proin venenatis, justo ac luctus consequat`
+  }, {
+    title: 'Slide Three',
+    description: `Quisque ut laoreet mi, non pellentesque quam. Nullam at vehicula lacus.`
+  }, {
+    title: 'Slide Four',
+    description: `Phasellus vehicula, dui ut pharetra faucibus, diam est varius mauris, sed cursus tortor enim quis magna. Vivamus at auctor nisl, at volutpat lorem.`
+  }];
+
+  public second_carousel_content: CarouselContent[] = [{
+    title: 'Hello',
+    description: `How are you`
+  }, {
+    title: 'How',
+    description: `enim eu risus ultrices cursus. Proin venenatis, justo ac luctus consequat`
+  }, {
+    title: 'Are',
+    description: `Quisque ut laoreet mi, non pellentesque quam. Nullam at vehicula lacus.`
   }, {
     title: 'You',
-    description: `I don't sleep, tangled up in the memory Of you and me, not you and her But for what's it worth`
-  }, {
-    title: 'Author',
-    description: `You know I'll always pick up your call 'Cause I'd rather have than nothing at all I heard that you've found someone Did you really find someone?`
-  }, {
-    title: 'Robinson',
-    description: `I'm too tired to pretend that last night didn't hurt When you called me a friend And it wouldn't be the first time you made me cry You don't even know why And I'm watching as you watching her And I'm watching as you watching her`
+    description: `Phasellus vehicula, dui ut pharetra faucibus, diam est varius mauris, sed cursus tortor enim quis magna. Vivamus at auctor nisl, at volutpat lorem.`
+  },
+  {
+    title: 'Doing?',
+    description: `Phasellus vehicula, dui ut pharetra faucibus, diam est varius mauris, sed cursus tortor enim quis magna. Vivamus at auctor nisl, at volutpat lorem.`
   }];
 }

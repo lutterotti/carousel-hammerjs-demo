@@ -3,46 +3,9 @@ import * as Hammer from 'hammerjs';
 
 @Component({
   selector: 'carousel',
-  styles: [`
-    .carousel-container {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .carousel-content {
-      height: 200px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid gray;
-    }
-
-    .carousel-pagination {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 50px;
-    }
-
-    .pagination-content {
-      margin: 0px 20px;
-    }
-
-    .paginate--selected {
-      transform: scale(1.2);
-      box-shadow: 0px 0px 10px -6px rgba(0,0,0,1);
-    }
-  `],
   template: `
-    <div class="carousel-container" #carouselContainer>
-      <div class="carousel-content">
+    <div class="carousel-container__wrapper" #carouselContainer>
+      <div class="carousel-content__wrapper">
         <ng-container *ngFor="let card of cards; index as index;">
           <div *ngIf="index === carousel_index">
             <ng-template [ngTemplateOutlet]="carouselContent" [ngTemplateOutletContext]="{card: card, cardIndex: index}"></ng-template>
@@ -51,7 +14,7 @@ import * as Hammer from 'hammerjs';
       </div>
       <div class="carousel-pagination">
         <ng-container *ngFor="let paginate of pagination; index as index;" (click)="updateCarouselIndexWithPagination(index)">
-          <div class="pagination-content" (click)="updateCarouselIndexWithPagination(index)" [ngClass]="{'paginate--selected': index === carousel_index}">
+          <div class="pagination-content__wrapper" (click)="updateCarouselIndexWithPagination(index)" [ngClass]="{'paginate--selected': index === carousel_index}">
             <ng-template [ngTemplateOutlet]="carouselPagination" [ngTemplateOutletContext]="{paginate: paginate, paginationIndex: index}" ></ng-template>
           </div>
         </ng-container>
