@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CarouselContent } from './app.component';
 
 @Component({
   selector: 'carousel-content-pagination',
@@ -9,5 +10,5 @@ import { Component, Input } from '@angular/core';
   `
 })
 export class CarouselContentPaginationComponent {
-  @Input() content: any;
+  @Input() content: CarouselContent;
 }

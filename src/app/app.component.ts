@@ -8,14 +8,25 @@ export interface CarouselContent {
 @Component({
   selector: 'app-root',
   template: `
-    <div style="display: flex; height: 100%; width: 100%; justify-content: space-between; align-items: center; flex-direction: row;">
+    <div class="app-container">
       <carousel class="carousel" [carouselContent]="carouselContent" [carouselPagination]="carouselPagination" [cards]="first_carousel_content" [pagination]="first_carousel_content">
-        <ng-template #carouselContent let-card="card" let-cardIndex="index"><carousel-content [content]="card"></carousel-content></ng-template>
-        <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index"><carousel-content-pagination [content]="paginate"></carousel-content-pagination></ng-template>
+        <ng-template #carouselContent let-card="card" let-cardIndex="index">
+          <carousel-content [content]="card"></carousel-content>
+        </ng-template>
+
+        <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index">
+          <carousel-content-pagination [content]="paginate"></carousel-content-pagination>
+        </ng-template>
       </carousel>
+
       <carousel class="carousel" [carouselContent]="carouselContent" [carouselPagination]="carouselPagination" [cards]="second_carousel_content" [pagination]="second_carousel_content">
-        <ng-template #carouselContent let-card="card" let-cardIndex="index"><carousel-content [content]="card"></carousel-content></ng-template>
-        <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index"><carousel-content-pagination [content]="paginate"></carousel-content-pagination></ng-template>
+        <ng-template #carouselContent let-card="card" let-cardIndex="index">
+          <carousel-content [content]="card"></carousel-content>
+        </ng-template>
+
+        <ng-template #carouselPagination let-paginate="paginate" let-paginationIndex="index">
+          <carousel-content-pagination [content]="paginate"></carousel-content-pagination>
+        </ng-template>
       </carousel>
     </div>
   `
@@ -23,7 +34,8 @@ export interface CarouselContent {
 export class AppComponent {
   title = 'carousel-hammerjs-demo';
   public first_carousel_content: CarouselContent[] = [{
-    title: 'Slide One', description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultricies luctus lectus, in tincidunt justo sollicitudin a. Suspendisse placerat`
+    title: 'Slide One',
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ultricies luctus lectus, in tincidunt justo sollicitudin a. Suspendisse placerat`
   }, {
     title: 'Slide One Point Five',
     description: `enim eu risus ultrices cursus. Proin venenatis, justo ac luctus consequat`
@@ -37,7 +49,7 @@ export class AppComponent {
 
   public second_carousel_content: CarouselContent[] = [{
     title: 'Hello',
-    description: `How are you`
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
   }, {
     title: 'How',
     description: `enim eu risus ultrices cursus. Proin venenatis, justo ac luctus consequat`

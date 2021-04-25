@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Input, Output, EventEmitter, OnChanges, ChangeDetectorRef, HostListener, OnDestroy, ContentChild, AfterContentInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, ChangeDetectorRef } from '@angular/core';
 import * as Hammer from 'hammerjs';
 
 @Component({
@@ -22,7 +22,7 @@ import * as Hammer from 'hammerjs';
     </div>
   `
 })
-export class CarouselComponent implements AfterViewInit, AfterContentInit, OnChanges {
+export class CarouselComponent implements AfterViewInit, OnChanges {
   @ViewChild('carouselContainer', { static: false }) carousel_container: ElementRef;
   @Input() carouselContent: any;
   @Input() carouselPagination: any;
@@ -34,12 +34,6 @@ export class CarouselComponent implements AfterViewInit, AfterContentInit, OnCha
   private hammer_container: HammerManager;
 
   constructor(private ChangeDetectorRef: ChangeDetectorRef) {}
-  // i believe we can simulate the swipe functionality with panleft and panright through detecting the pressure attribute in the pointerevent
-  // dont even need this ^ there is pancancel and panstart
-  // from there we can determine if the swipe was left or right based off if the x1 - x2 co-ordinates are negative (right) positive (left)
-
-  ngAfterContentInit() {
-  }
 
   ngAfterViewInit() {
     this.hammer_container = new Hammer.Manager(this.carousel_container.nativeElement);
@@ -61,12 +55,7 @@ export class CarouselComponent implements AfterViewInit, AfterContentInit, OnCha
       this.swipe_start_position = source_event.pageX;
     });
 
-    this.hammer_container.on('pancancel', (e: HammerInput) => {
-      const source_event = e.srcEvent as PointerEvent;
-    });
-
     this.hammer_container.on('panend', (e: HammerInput) => {
-      const source_event = e.srcEvent as PointerEvent;
       this.updateCarouselIndex();
     });
 
