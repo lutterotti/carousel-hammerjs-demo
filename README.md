@@ -1,4 +1,4 @@
-## CarouselHammerjsDemo
+## Carousel with HammerJS
 
 This is a custom carousel that takes in a component as both the "slide" and "pagination". It leverages HammerJs and allows users to "swipe" through slides if they are on mobile or drage across if on a desktop. This is the same library that is used as a base for `SwiperJS`.
 
