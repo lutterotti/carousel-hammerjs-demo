@@ -1,27 +1,11 @@
-# CarouselHammerjsDemo
+## CarouselHammerjsDemo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+This is a custom carousel that takes in a component as both the "slide" and "pagination". It leverages HammerJs and allows users to "swipe" through slides if they are on mobile or drage across if on a desktop. This is the same library that is used as a base for `SwiperJS`.
 
-## Development server
+_what makes this different from bootstrap or other carousel / slide shows?_
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The ability to fully customize the slides and pagination. Other carousels allow you to customize to an extent, but you are not able to pass through whole components. 
 
-## Code scaffolding
+_why pass entire components?_
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The ability to pass entire components allows the developer to really leverage `*ngFor` and populate that instance of the carousel with data that is specific to that instance and have the carousel as a whole be more dynamic. 
